@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
 void check_flags(char c, va_list args, int *count)
 {
-    char *s;
+    unsigned long   p;
+    char            *s;
 
     if (c == 's')
     {
@@ -21,8 +23,8 @@ void check_flags(char c, va_list args, int *count)
         ft_putstr(s, count);
     }
     else if(c == 'c')
-        ft_putchar(va_arg(args,int), count);
-    else if(c=='d' || c =='i')
+        ft_putchar((char)va_arg(args,int), count);
+    else if(c == 'd' || c == 'i')
         ft_putnbr(va_arg(args,int), count);
     else if(c == 'p')
         ft_point(va_arg(args , unsigned long), count);
@@ -44,18 +46,23 @@ int ft_printf(const char *format, ...)
     int i;
 
     count = 0;
-    va_start(args, format);
     i = 0;
+    if (!count)
+        return (-1);
+    va_start(args, format);
     while (format[i])
     {
-        if (format[i] == '%' && ft_strchr("cspduixX%",format[i+1]))
+        if (format[i] == '%' && ft_strchr("cspduixX%", format[i+1]))
         {
             check_flags(format[i+1], args, &count);
             i++;
+            if (count == -1)
+                return (-1);
         }
         else
             ft_putchar(format[i], &count);
        i++;
     }
+    va_end(args);
     return (count);
 }
