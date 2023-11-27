@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zchtaibi <zchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 10:22:43 by zchtaibi          #+#    #+#             */
-/*   Updated: 2023/11/27 02:32:57 by zchtaibi         ###   ########.fr       */
+/*   Created: 2023/11/26 10:22:50 by zchtaibi          #+#    #+#             */
+/*   Updated: 2023/11/26 22:06:59 by zchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void	ft_putstr(char *txt, int *ptr)
-{
-	int	i;
+# include <stdarg.h>
+# include <unistd.h>
 
-	i = 0;
-	if (txt == NULL)
-	{
-		ft_putstr("(null)", ptr);
-		return ;
-	}
-	else
-	{
-		while (txt[i])
-		{
-			ft_putchar(txt[i], ptr);
-			i++;
-		}
-	}
-}
+void	ft_putchar(char c, int *ptr);
+void	ft_putstr(char *txt, int *ptr);
+void	ft_putnbr(int nb, int *ptr);
+void	ft_puthex(unsigned int nbr, char check, int *size);
+void	ft_point(unsigned long nbr, int *ptr);
+int		ft_printf(const char *count, ...);
+void	ft_putuns(int nb, int *len);
+
+#endif

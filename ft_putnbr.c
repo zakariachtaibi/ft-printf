@@ -1,19 +1,28 @@
-#include "libftprintf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zchtaibi <zchtaibi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/26 10:22:32 by zchtaibi          #+#    #+#             */
+/*   Updated: 2023/11/26 10:22:32 by zchtaibi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 
 void	ft_putnbr(int nb, int *count)
 {
-	if (nb == -2147483648)
-		ft_putstr("-2147483648", count);
-	else if (nb < 0)
+	long int	n;
+
+	n = nb;
+	if (n < 0)
 	{
+		n = -n;
 		ft_putchar('-', count);
-		ft_putnbr(-nb, count);
 	}
-	else if (nb > 9)
-	{
-		ft_putnbr((nb / 10), count);
-		ft_putnbr(nb % 10, count);
-	}
-	else
-		ft_putchar(nb + 48, count);
+	if (n > 9)
+		ft_putnbr(n / 10, count);
+	ft_putchar((n % 10) + 48, count);
 }

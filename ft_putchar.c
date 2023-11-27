@@ -6,14 +6,14 @@
 /*   By: zchtaibi <zchtaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:47:02 by zchtaibi          #+#    #+#             */
-/*   Updated: 2023/11/24 10:47:38 by zchtaibi         ###   ########.fr       */
+/*   Updated: 2023/11/26 22:07:21 by zchtaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void    ft_putchar(char c, int *ptr)
+void	ft_putchar(char c, int *ptr)
 {
-    write(1, &c, 1);
-    (*ptr)++;
+	write(1, &c, 1);
+	(*ptr)++;
 }
